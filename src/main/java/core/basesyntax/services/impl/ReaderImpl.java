@@ -11,13 +11,14 @@ public class ReaderImpl implements Reader {
     @Override
     public List<String> read(String filePath) {
         final String correctData = "type,fruit,quantity";
+        final String correctWritedData = "fruit,quantity";
         List<String> list = new ArrayList<>();
         try (BufferedReader bf = new BufferedReader(new FileReader(filePath))) {
             String header = bf.readLine();
             if (header == null) {
                 throw new IOException("File is empty");
             }
-            if (!header.equals(correctData)) {
+            if (!header.equals(correctData) && !header.equals(correctWritedData)) {
                 throw new IOException("Data is incorrect");
             }
             String line = bf.readLine();
