@@ -1,5 +1,8 @@
 package core.basesyntax;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.services.Reader;
 import core.basesyntax.services.ReportGenerator;
@@ -20,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -54,11 +56,11 @@ public class WriterTest {
         expected.add("banana,15");
         String reportToWrite = reportGenerator.getReport(shopService.process(soloListFruit));
         boolean isWritten = fileWriter.write(reportToWrite,
-                "src/test/java/core/basesyntax/recources/outputActualFile.csv"
+                "src/test/java/recources/outputActualFile.csv"
         );
         List<String> actual = fileReader.read(
-                "src/test/java/core/basesyntax/recources/outputActualFile.csv");
-        Assert.assertEquals(expected, actual);
-        Assert.assertTrue(isWritten);
+                "src/test/java/recources/outputActualFile.csv");
+        assertEquals(expected, actual);
+        assertTrue(isWritten);
     }
 }

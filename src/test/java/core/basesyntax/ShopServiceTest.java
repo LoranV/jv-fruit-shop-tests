@@ -1,5 +1,8 @@
 package core.basesyntax;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.services.ShopService;
 import core.basesyntax.services.impl.ShopServiceImpl;
@@ -14,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -50,8 +52,8 @@ public class ShopServiceTest {
         expected.put("banana", 45);
         soloListFruit.add(new FruitTransaction("b", "banana", 45));
         Map<String, Integer> actual = shopService.process(soloListFruit);
-        Assert.assertEquals(1, actual.size());
-        Assert.assertEquals(actual, expected);
+        assertEquals(1, actual.size());
+        assertEquals(actual, expected);
     }
 
     @Test
@@ -63,14 +65,14 @@ public class ShopServiceTest {
         multiplyListFruits.add(new FruitTransaction("s", "banana", 25));
         multiplyListFruits.add(new FruitTransaction("r", "banana", 15));
         Map<String, Integer> actual = shopService.process(multiplyListFruits);
-        Assert.assertEquals(1, actual.size());
-        Assert.assertEquals(actual, expected);
+        assertEquals(1, actual.size());
+        assertEquals(actual, expected);
     }
 
     @Test
     void shopService_NegativeBalance_NotOk() {
         soloListFruit.add(new FruitTransaction("b", "banana", -15));
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             shopService.process(soloListFruit);
         });
     }
@@ -79,7 +81,7 @@ public class ShopServiceTest {
     void shopService_NegativePurchase_NotOk() {
         multiplyListFruits.add(new FruitTransaction("b", "banana", 15));
         multiplyListFruits.add(new FruitTransaction("p", "banana", 20));
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             shopService.process(multiplyListFruits);
         });
     }
@@ -87,7 +89,7 @@ public class ShopServiceTest {
     @Test
     void shopService_NegativeSupply_NotOk() {
         soloListFruit.add(new FruitTransaction("s", "banana", -15));
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             shopService.process(soloListFruit);
         });
     }
@@ -95,7 +97,7 @@ public class ShopServiceTest {
     @Test
     void shopService_NegativeReturn_NotOk() {
         soloListFruit.add(new FruitTransaction("r", "banana", -15));
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             shopService.process(soloListFruit);
         });
     }

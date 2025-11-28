@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import static org.junit.Assert.assertEquals;
+
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.services.ReportGenerator;
 import core.basesyntax.services.ShopService;
@@ -16,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -44,6 +45,6 @@ public class ReportGeneratorTest {
     void reportGenerator_CorrectOutput_Ok() {
         String expected = "fruit,quantity\nbanana,45\n";
         String actual = reportGenerator.getReport(shopService.process(soloListFruit));
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }

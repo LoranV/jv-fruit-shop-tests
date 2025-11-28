@@ -11,7 +11,7 @@ public class WriterImpl implements Writer {
             fileWriter.write(text);
             return true;
         } catch (IOException e) {
-            throw new RuntimeException("Can't write to file: " + fileName + e);
+            throw new RuntimeException("Can't write to file: " + fileName + " " + e);
         }
     }
 }

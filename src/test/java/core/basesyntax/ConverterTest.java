@@ -1,5 +1,7 @@
 package core.basesyntax;
 
+import static org.junit.Assert.assertEquals;
+
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.services.Reader;
 import core.basesyntax.services.converter.DataConverter;
@@ -25,16 +27,16 @@ public class ConverterTest {
     public void converter_correctData_Ok() {
         List<FruitTransaction> expected = new ArrayList<>();
         expected.add(new FruitTransaction("b", "banana", 45));
-        List<String> data = reader.read("src/test/java/core/basesyntax/recources/inputFile.csv");
+        List<String> data = reader.read("src/test/java/recources/inputFile.csv");
         List<FruitTransaction> actual = dataConverter.convertToTransaction(data);
-        Assert.assertEquals(1, actual.size());
-        Assert.assertEquals(actual.get(0), expected.get(0));
+        assertEquals(1, actual.size());
+        assertEquals(actual.get(0), expected.get(0));
     }
 
     @Test
     public void converter_incorrectData_NotOk() {
         List<String> data = reader.read(
-                "src/test/java/core/basesyntax/recources/incorrectDataForConvert.csv");
+                "src/test/java/recources/incorrectDataForConvert.csv");
         Assert.assertThrows(RuntimeException.class, () -> {
             dataConverter.convertToTransaction(data);
         });
