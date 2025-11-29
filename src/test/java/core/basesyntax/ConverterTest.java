@@ -1,6 +1,7 @@
 package core.basesyntax;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.services.Reader;
@@ -9,7 +10,6 @@ import core.basesyntax.services.converter.DataConverterImpl;
 import core.basesyntax.services.impl.ReaderImpl;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +37,7 @@ public class ConverterTest {
     public void converter_incorrectData_NotOk() {
         List<String> data = reader.read(
                 "src/test/java/recources/incorrectDataForConvert.csv");
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             dataConverter.convertToTransaction(data);
         });
     }

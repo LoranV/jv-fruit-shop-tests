@@ -1,12 +1,12 @@
 package core.basesyntax;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import core.basesyntax.services.Reader;
 import core.basesyntax.services.impl.ReaderImpl;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -29,21 +29,21 @@ public class ReaderTest {
 
     @Test
     public void reader_incorrectFile_NotOk() {
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             reader.read("src/test/recources/incorrectFile.csv");
         });
     }
 
     @Test
     public void reader_emptyFile_NotOk() {
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             reader.read("src/test/recources/emptyFile.csv");
         });
     }
 
     @Test
     public void reader_incorrectData_NotOk() {
-        Assert.assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             reader.read("src/test/incorrectData.csv");
         });
     }
