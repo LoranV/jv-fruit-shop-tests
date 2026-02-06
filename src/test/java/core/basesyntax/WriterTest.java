@@ -56,10 +56,10 @@ public class WriterTest {
         expected.add("banana,15");
         String reportToWrite = reportGenerator.getReport(shopService.process(soloListFruit));
         boolean isWritten = fileWriter.write(reportToWrite,
-                "src/test/java/recources/outputActualFile.csv"
+                "src/test/recources/outputActualFile.csv"
         );
         List<String> actual = fileReader.read(
-                "src/test/java/recources/outputActualFile.csv");
+                "src/test/recources/outputActualFile.csv");
         assertEquals(expected, actual);
         assertTrue(isWritten);
     }

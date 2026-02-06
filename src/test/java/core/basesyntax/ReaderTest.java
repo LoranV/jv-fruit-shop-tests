@@ -22,7 +22,7 @@ public class ReaderTest {
     public void reader_correctFile_Ok() {
         List<String> expected = new ArrayList<>();
         expected.add("b,banana,45");
-        List<String> actual = reader.read("src/test/java/recources/inputFile.csv");
+        List<String> actual = reader.read("src/test/recources/inputFile.csv");
         assertEquals("Reader did not return expected data.",
                 expected.toString(), actual.toString());
     }
